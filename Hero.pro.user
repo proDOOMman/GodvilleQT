@@ -54,7 +54,7 @@
     <value type="QString" >CONFIG_PROTECT=/usr/share/config /usr/kde/3.5/share/config /usr/kde/3.5/env /usr/kde/3.5/shutdown</value>
     <value type="QString" >CONFIG_PROTECT_MASK=/etc/gentoo-release /etc/sandbox.d /etc/env.d/java/ /etc/php/cli-php5/ext-active/ /etc/php/cgi-php5/ext-active/ /etc/php/apache2-php5/ext-active/ /etc/udev/rules.d /etc/fonts/fonts.conf /etc/gconf /etc/terminfo /etc/ca-certificates.conf /etc/revdep-rebuild /etc/splash</value>
     <value type="QString" >CVS_RSH=ssh</value>
-    <value type="QString" >DBUS_SESSION_BUS_ADDRESS=unix:abstract=/tmp/dbus-KWYb12QVbA,guid=dbdc3461dbe48ec3cf2d341749f2eb97</value>
+    <value type="QString" >DBUS_SESSION_BUS_ADDRESS=unix:abstract=/tmp/dbus-4swFg9cTz6,guid=d05812e782446bb602e257be4a06b83c</value>
     <value type="QString" >DESKTOP_SESSION=KDE-4</value>
     <value type="QString" >DESKTOP_STARTUP_ID=</value>
     <value type="QString" >DISPLAY=:0.0</value>
@@ -77,7 +77,6 @@
     <value type="QString" >KDE_SESSION_VERSION=4</value>
     <value type="QString" >LADSPA_PATH=/usr/lib/ladspa</value>
     <value type="QString" >LANG=ru_RU.UTF-8</value>
-    <value type="QString" >LANGUAGE=</value>
     <value type="QString" >LC_ALL=ru_RU.UTF-8</value>
     <value type="QString" >LD_LIBRARY_PATH=/usr/lib/qtcreator:</value>
     <value type="QString" >LESS=-R -M --shift 5</value>
@@ -97,7 +96,7 @@
     <value type="QString" >QT_PLUGIN_PATH=/home/prodoomman/.kde4/lib/kde4/plugins/:/usr/lib/kde4/plugins/</value>
     <value type="QString" >SANE_CONFIG_DIR=/etc/sane.d</value>
     <value type="QString" >SDL_VIDEO_X11_DGAMOUSE=0</value>
-    <value type="QString" >SESSION_MANAGER=local/timekiller:/tmp/.ICE-unix/5137</value>
+    <value type="QString" >SESSION_MANAGER=local/timekiller:/tmp/.ICE-unix/4092</value>
     <value type="QString" >SHELL=/bin/bash</value>
     <value type="QString" >SHLVL=1</value>
     <value type="QString" >STRIGI_PLUGIN_PATH=/usr/lib/strigi:</value>
@@ -109,7 +108,7 @@
     <value type="QString" >XDG_CONFIG_DIRS=/etc/xdg</value>
     <value type="QString" >XDG_DATA_DIRS=/usr/share:/usr/local/share:/usr/share</value>
     <value type="QString" >XDG_MENU_PREFIX=kde-4.2-</value>
-    <value type="QString" >XDG_SESSION_COOKIE=c73fc927347c24668293d6354903247e-1240656789.530942-991751060</value>
+    <value type="QString" >XDG_SESSION_COOKIE=c73fc927347c24668293d6354903247e-1241954355.853229-13887777</value>
     <value type="QString" >XDM_MANAGED=method=classic</value>
     <value type="QString" >XERCESC_NLS_HOME=/usr/share/xerces-c/msg</value>
     <value type="QString" >ZIPCHARSET=cp866</value>
@@ -119,10 +118,9 @@
     <value type="QString" >-spec</value>
     <value type="QString" >/usr/share/qt4/mkspecs/linux-g++</value>
     <value type="QString" >-r</value>
-    <value type="QString" >CONFIG+=debug_and_release</value>
    </valuelist>
    <value key="abstractProcess.command" type="QString" >/usr/bin/qmake</value>
-   <value key="abstractProcess.enabled" type="bool" >false</value>
+   <value key="abstractProcess.enabled" type="bool" >true</value>
    <value key="abstractProcess.workingDirectory" type="QString" >/home/prodoomman/GodvilleQT</value>
    <value key="buildConfiguration" type="int" >0</value>
   </valuemap>
@@ -136,7 +134,7 @@
     <value type="QString" >CONFIG_PROTECT=/usr/share/config /usr/kde/3.5/share/config /usr/kde/3.5/env /usr/kde/3.5/shutdown</value>
     <value type="QString" >CONFIG_PROTECT_MASK=/etc/gentoo-release /etc/sandbox.d /etc/env.d/java/ /etc/php/cli-php5/ext-active/ /etc/php/cgi-php5/ext-active/ /etc/php/apache2-php5/ext-active/ /etc/udev/rules.d /etc/fonts/fonts.conf /etc/gconf /etc/terminfo /etc/ca-certificates.conf /etc/revdep-rebuild /etc/splash</value>
     <value type="QString" >CVS_RSH=ssh</value>
-    <value type="QString" >DBUS_SESSION_BUS_ADDRESS=unix:abstract=/tmp/dbus-KWYb12QVbA,guid=dbdc3461dbe48ec3cf2d341749f2eb97</value>
+    <value type="QString" >DBUS_SESSION_BUS_ADDRESS=unix:abstract=/tmp/dbus-4swFg9cTz6,guid=d05812e782446bb602e257be4a06b83c</value>
     <value type="QString" >DESKTOP_SESSION=KDE-4</value>
     <value type="QString" >DESKTOP_STARTUP_ID=</value>
     <value type="QString" >DISPLAY=:0.0</value>
@@ -159,7 +157,6 @@
     <value type="QString" >KDE_SESSION_VERSION=4</value>
     <value type="QString" >LADSPA_PATH=/usr/lib/ladspa</value>
     <value type="QString" >LANG=ru_RU.UTF-8</value>
-    <value type="QString" >LANGUAGE=</value>
     <value type="QString" >LC_ALL=ru_RU.UTF-8</value>
     <value type="QString" >LD_LIBRARY_PATH=/usr/lib/qtcreator:</value>
     <value type="QString" >LESS=-R -M --shift 5</value>
@@ -179,7 +176,7 @@
     <value type="QString" >QT_PLUGIN_PATH=/home/prodoomman/.kde4/lib/kde4/plugins/:/usr/lib/kde4/plugins/</value>
     <value type="QString" >SANE_CONFIG_DIR=/etc/sane.d</value>
     <value type="QString" >SDL_VIDEO_X11_DGAMOUSE=0</value>
-    <value type="QString" >SESSION_MANAGER=local/timekiller:/tmp/.ICE-unix/5137</value>
+    <value type="QString" >SESSION_MANAGER=local/timekiller:/tmp/.ICE-unix/4092</value>
     <value type="QString" >SHELL=/bin/bash</value>
     <value type="QString" >SHLVL=1</value>
     <value type="QString" >STRIGI_PLUGIN_PATH=/usr/lib/strigi:</value>
@@ -191,7 +188,7 @@
     <value type="QString" >XDG_CONFIG_DIRS=/etc/xdg</value>
     <value type="QString" >XDG_DATA_DIRS=/usr/share:/usr/local/share:/usr/share</value>
     <value type="QString" >XDG_MENU_PREFIX=kde-4.2-</value>
-    <value type="QString" >XDG_SESSION_COOKIE=c73fc927347c24668293d6354903247e-1240656789.530942-991751060</value>
+    <value type="QString" >XDG_SESSION_COOKIE=c73fc927347c24668293d6354903247e-1241954355.853229-13887777</value>
     <value type="QString" >XDM_MANAGED=method=classic</value>
     <value type="QString" >XERCESC_NLS_HOME=/usr/share/xerces-c/msg</value>
     <value type="QString" >ZIPCHARSET=cp866</value>
