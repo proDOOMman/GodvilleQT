@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>DiaryWin</class>
+ <widget class="QWidget" name="DiaryWin">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>394</width>
+    <height>387</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Дневник</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="../resorce.qrc">
+    <normaloff>:/src/icon.svg</normaloff>:/src/icon.svg</iconset>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <property name="spacing">
+    <number>0</number>
+   </property>
+   <property name="leftMargin">
+    <number>0</number>
+   </property>
+   <property name="topMargin">
+    <number>0</number>
+   </property>
+   <property name="rightMargin">
+    <number>2</number>
+   </property>
+   <property name="bottomMargin">
+    <number>2</number>
+   </property>
+   <item>
+    <widget class="QScrollArea" name="textArea">
+     <property name="widgetResizable">
+      <bool>true</bool>
+     </property>
+     <widget class="QWidget" name="scrollAreaWidgetContents">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>388</width>
+        <height>356</height>
+       </rect>
+      </property>
+      <layout class="QVBoxLayout" name="verticalLayout_2">
+       <property name="spacing">
+        <number>0</number>
+       </property>
+       <property name="margin">
+        <number>1</number>
+       </property>
+       <item>
+        <widget class="QLabel" name="text">
+         <property name="text">
+          <string/>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+         </property>
+         <property name="wordWrap">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+   </item>
+   <item>
+    <widget class="QPush" name="qpush_2">
+     <property name="minimumSize">
+      <size>
+       <width>60</width>
+       <height>25</height>
+      </size>
+     </property>
+     <property name="maximumSize">
+      <size>
+       <width>60</width>
+       <height>25</height>
+      </size>
+     </property>
+     <property name="toolTip">
+      <string> Push Button</string>
+     </property>
+     <property name="whatsThis">
+      <string>Push Button</string>
+     </property>
+     <property name="layoutDirection">
+      <enum>Qt::RightToLeft</enum>
+     </property>
+     <property name="font">
+      <font>
+       <family>Arial</family>
+       <pointsize>27</pointsize>
+       <weight>75</weight>
+       <italic>false</italic>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="colorTx" stdset="0">
+      <color>
+       <red>193</red>
+       <green>193</green>
+       <blue>193</blue>
+      </color>
+     </property>
+     <property name="colorBt" stdset="0">
+      <color>
+       <red>65</red>
+       <green>65</green>
+       <blue>65</blue>
+      </color>
+     </property>
+     <property name="text">
+      <string>Закрыть</string>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>QPush</class>
+   <extends>QWidget</extends>
+   <header>qpush.h</header>
+  </customwidget>
+ </customwidgets>
+ <resources>
+  <include location="../resorce.qrc"/>
+ </resources>
+ <connections>
+  <connection>
+   <sender>qpush_2</sender>
+   <signal>released()</signal>
+   <receiver>DiaryWin</receiver>
+   <slot>close()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>361</x>
+     <y>372</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>196</x>
+     <y>193</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>

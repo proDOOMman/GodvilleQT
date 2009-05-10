@@ -1,0 +1,11 @@
+<RCC>
+    <qresource prefix="/" >
+        <file>bin/icon.bmp</file>
+        <file>src/icon.svg</file>
+        <file>src/icon_16.png</file>
+        <file>src/icon_32.png</file>
+        <file>src/icon_48.png</file>
+        <file>src/icon_64.png</file>
+        <file>src/icon_128.png</file>
+    </qresource>
+</RCC>
