@@ -15,8 +15,7 @@ statswinimpl::statswinimpl(Hero *h)
 
 #ifdef Q_WS_WIN
         QResource res = QResource("bin/icon.bmp");
-#endif
-#ifdef Q_WS_X11
+#else
         QResource res = QResource("src/icon_128.png");
 #endif
 	QPixmap pix;

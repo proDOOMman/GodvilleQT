@@ -1,13 +1,15 @@
 #include "heroMessager.h"
 //=====================================================================================
 HeroMessager::HeroMessager()
-: QWidget(0,Qt::Popup)
+: QWidget()
 {
 	setupUi(this);
-	
-        this->setWindowFlags(Qt::Popup);
-        //может не будет теряться фокус у приложений
 
+#ifdef Q_OS_MAC
+    setWindowFlags(windowFlags() | Qt::FramelessWindowHint);
+#else
+    setWindowFlags(windowFlags() | Qt::FramelessWindowHint | Qt::WindowStaysOnTopHint | Qt::ToolTip);
+#endif
 	showTimer = new QTimer(this);
 	showTimer->setInterval(10);
 	connect(showTimer, SIGNAL(timeout()), this, SLOT(showT()));
@@ -15,7 +17,7 @@ HeroMessager::HeroMessager()
 	stayTimer = new QTimer(this);
 	stayTimer->setInterval(3500);
 	connect(stayTimer, SIGNAL(timeout()), this, SLOT(stay()));
-	
+
 	hideTimer = new QTimer(this);
 	hideTimer->setInterval(10);
 	connect(hideTimer, SIGNAL(timeout()), this, SLOT(hideT()));
@@ -58,7 +60,7 @@ void HeroMessager::open(QString headS, QString textS)
 	hideTimer->stop();
 	stayTimer->stop();
 	head->setText(tr(headS.toAscii()));
-	text->setText(tr(textS.toAscii()));
+        text->setText(tr(textS.toAscii()));
 	desk = qApp->desktop()->availableGeometry();
 	move(desk.width(), desk.height()-height()-25);
 	show();
