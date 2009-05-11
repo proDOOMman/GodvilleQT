@@ -28,29 +28,27 @@ void diarywinimpl::keyPressEvent(QKeyEvent *event)
 void diarywinimpl::saveDiary(QString text)
 {
 #ifdef Q_WS_WIN
-        QFile *f = new QFile("diary.htm");
+        QFile f("diary.htm");
+#else
+        QFile f(QDir::home().absoluteFilePath(".godville/diary.htm"));
 #endif
-#ifdef Q_WS_X11
-        QFile *f = new QFile(QDir::home().absoluteFilePath(".godville/diary.htm"));
-#endif
-	f->open(QIODevice::WriteOnly);
-        f->write(text.toAscii());
-	f->close();
+        f.open(QIODevice::WriteOnly);
+        f.write(text.toAscii());
+        f.close();
 }
 //=====================================================================================
 QString diarywinimpl::loadDiary()
 {
         QString res = "";
 #ifdef Q_WS_WIN
-        QFile *f = new QFile("diary.htm");
+        QFile f("diary.htm");
+#else
+        QFile f(QDir::home().absoluteFilePath(".godville/diary.htm"));
 #endif
-#ifdef Q_WS_X11
-        QFile *f = new QFile(QDir::home().absoluteFilePath(".godville/diary.htm"));
-#endif
-	if(f->exists()){
-		f->open(QIODevice::ReadOnly);
-		res = f->readAll();
-		f->close();
+        if(f.exists()){
+                f.open(QIODevice::ReadOnly);
+                res = f.readAll();
+                f.close();
 	}
 	return res;
 }

@@ -1133,12 +1133,6 @@
               <height>15</height>
              </size>
             </property>
-            <property name="toolTip">
-             <string> Progress bar</string>
-            </property>
-            <property name="whatsThis">
-             <string>Progress bar</string>
-            </property>
             <property name="value">
              <double>0.000000000000000</double>
             </property>
@@ -1205,12 +1199,6 @@
               <height>15</height>
              </size>
             </property>
-            <property name="toolTip">
-             <string> Progress bar</string>
-            </property>
-            <property name="whatsThis">
-             <string>Progress bar</string>
-            </property>
             <property name="font" stdset="0">
              <number>26</number>
             </property>
@@ -1273,12 +1261,6 @@
               <width>190</width>
               <height>15</height>
              </size>
-            </property>
-            <property name="toolTip">
-             <string> Progress bar</string>
-            </property>
-            <property name="whatsThis">
-             <string>Progress bar</string>
             </property>
             <property name="font" stdset="0">
              <number>26</number>
@@ -1481,7 +1463,7 @@
                <x>0</x>
                <y>0</y>
                <width>270</width>
-               <height>405</height>
+               <height>407</height>
               </rect>
              </property>
              <layout class="QHBoxLayout" name="horizontalLayout">
@@ -1507,7 +1489,7 @@
      <item>
       <widget class="QGroupBox" name="groupBox_5">
        <property name="sizePolicy">
-        <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+        <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
          <horstretch>0</horstretch>
          <verstretch>0</verstretch>
         </sizepolicy>
@@ -1515,205 +1497,92 @@
        <property name="title">
         <string>Пульт вмешательства в личную жизнь</string>
        </property>
-       <layout class="QGridLayout" name="gridLayout_2">
-        <item row="2" column="0" colspan="2">
-         <widget class="QPush" name="btGood">
-          <property name="minimumSize">
-           <size>
-            <width>110</width>
-            <height>30</height>
-           </size>
-          </property>
-          <property name="maximumSize">
-           <size>
-            <width>110</width>
-            <height>30</height>
-           </size>
-          </property>
-          <property name="toolTip">
-           <string> Push Button</string>
-          </property>
-          <property name="whatsThis">
-           <string>Push Button</string>
-          </property>
-          <property name="font">
-           <font>
-            <family>Arial</family>
-            <pointsize>17</pointsize>
-            <weight>75</weight>
-            <italic>false</italic>
-            <bold>true</bold>
-            <stylestrategy>PreferAntialias</stylestrategy>
-            <kerning>true</kerning>
-           </font>
-          </property>
-          <property name="colorTx" stdset="0">
-           <color>
-            <red>198</red>
-            <green>198</green>
-            <blue>198</blue>
-           </color>
-          </property>
-          <property name="colorBt" stdset="0">
-           <color>
-            <red>50</red>
-            <green>50</green>
-            <blue>50</blue>
-           </color>
-          </property>
-          <property name="text">
-           <string>Сделать хорошо</string>
-          </property>
-         </widget>
+       <layout class="QVBoxLayout" name="verticalLayout_5">
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_17">
+          <item>
+           <widget class="QLabel" name="label_15">
+            <property name="text">
+             <string>Прана:</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QProg" name="pbPrane">
+            <property name="maximumSize">
+             <size>
+              <width>16777215</width>
+              <height>20</height>
+             </size>
+            </property>
+            <property name="font" stdset="0">
+             <number>25</number>
+            </property>
+            <property name="color" stdset="0">
+             <color>
+              <red>0</red>
+              <green>2</green>
+              <blue>177</blue>
+             </color>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <layout class="QVBoxLayout" name="verticalLayout_7">
+            <property name="spacing">
+             <number>0</number>
+            </property>
+            <property name="rightMargin">
+             <number>0</number>
+            </property>
+            <property name="bottomMargin">
+             <number>0</number>
+            </property>
+            <item>
+             <widget class="QPushButton" name="btGood">
+              <property name="text">
+               <string>Сделать хорошо</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="btBad">
+              <property name="styleSheet">
+               <string notr="true"/>
+              </property>
+              <property name="text">
+               <string>Сделать плохо</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+         </layout>
         </item>
-        <item row="3" column="0">
+        <item>
          <widget class="QLabel" name="label">
           <property name="text">
            <string>Глас божий:</string>
           </property>
          </widget>
         </item>
-        <item row="4" column="0" colspan="2">
-         <widget class="QLineEdit" name="leFrase">
-          <property name="maxLength">
-           <number>60</number>
-          </property>
-         </widget>
-        </item>
-        <item row="1" column="0">
-         <widget class="QLabel" name="label_15">
-          <property name="text">
-           <string>Прана:</string>
-          </property>
-         </widget>
-        </item>
-        <item row="1" column="1" colspan="2">
-         <widget class="QProg" name="pbPrane">
-          <property name="minimumSize">
-           <size>
-            <width>0</width>
-            <height>16</height>
-           </size>
-          </property>
-          <property name="maximumSize">
-           <size>
-            <width>16777215</width>
-            <height>20</height>
-           </size>
-          </property>
-          <property name="toolTip">
-           <string> Progress bar</string>
-          </property>
-          <property name="whatsThis">
-           <string>Progress bar</string>
-          </property>
-          <property name="font" stdset="0">
-           <number>25</number>
-          </property>
-          <property name="color" stdset="0">
-           <color>
-            <red>0</red>
-            <green>2</green>
-            <blue>177</blue>
-           </color>
-          </property>
-         </widget>
-        </item>
-        <item row="4" column="2">
-         <widget class="QPush" name="btSay">
-          <property name="minimumSize">
-           <size>
-            <width>70</width>
-            <height>30</height>
-           </size>
-          </property>
-          <property name="maximumSize">
-           <size>
-            <width>70</width>
-            <height>30</height>
-           </size>
-          </property>
-          <property name="toolTip">
-           <string> Push Button</string>
-          </property>
-          <property name="whatsThis">
-           <string>Push Button</string>
-          </property>
-          <property name="font">
-           <font>
-            <family>Arial</family>
-            <pointsize>27</pointsize>
-            <weight>75</weight>
-            <italic>false</italic>
-            <bold>true</bold>
-           </font>
-          </property>
-          <property name="colorTx" stdset="0">
-           <color>
-            <red>194</red>
-            <green>194</green>
-            <blue>194</blue>
-           </color>
-          </property>
-          <property name="colorBt" stdset="0">
-           <color>
-            <red>71</red>
-            <green>71</green>
-            <blue>71</blue>
-           </color>
-          </property>
-          <property name="text">
-           <string>Изречь</string>
-          </property>
-         </widget>
-        </item>
-        <item row="2" column="2">
-         <widget class="QPush" name="btBad">
-          <property name="minimumSize">
-           <size>
-            <width>110</width>
-            <height>30</height>
-           </size>
-          </property>
-          <property name="maximumSize">
-           <size>
-            <width>110</width>
-            <height>30</height>
-           </size>
-          </property>
-          <property name="toolTip">
-           <string> Push Button</string>
-          </property>
-          <property name="whatsThis">
-           <string>Push Button</string>
-          </property>
-          <property name="font">
-           <font>
-            <family>Arial</family>
-            <pointsize>17</pointsize>
-            <weight>75</weight>
-            <italic>false</italic>
-            <bold>true</bold>
-           </font>
-          </property>
-          <property name="colorTx" stdset="0">
-           <color>
-            <red>198</red>
-            <green>198</green>
-            <blue>198</blue>
-           </color>
-          </property>
-          <property name="colorBt" stdset="0">
-           <color>
-            <red>50</red>
-            <green>50</green>
-            <blue>50</blue>
-           </color>
-          </property>
-          <property name="text">
-           <string>Сделать плохо</string>
-          </property>
-         </widget>
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_16">
+          <item>
+           <widget class="QLineEdit" name="leFrase">
+            <property name="maxLength">
+             <number>60</number>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="btSay">
+            <property name="text">
+             <string>Изречь</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
         </item>
        </layout>
       </widget>
@@ -1733,22 +1602,18 @@
        <property name="title">
         <string>Инвентарь</string>
        </property>
-       <widget class="QLabel" name="lbItems">
-        <property name="geometry">
-         <rect>
-          <x>5</x>
-          <y>29</y>
-          <width>16</width>
-          <height>16</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string/>
-        </property>
-        <property name="wordWrap">
-         <bool>true</bool>
-        </property>
-       </widget>
+       <layout class="QVBoxLayout" name="verticalLayout_6">
+        <item>
+         <widget class="QLabel" name="lbItems">
+          <property name="text">
+           <string/>
+          </property>
+          <property name="wordWrap">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+       </layout>
       </widget>
      </item>
      <item>
@@ -1777,36 +1642,7 @@
       </widget>
      </item>
      <item>
-      <widget class="QPush" name="btClose">
-       <property name="maximumSize">
-        <size>
-         <width>100</width>
-         <height>40</height>
-        </size>
-       </property>
-       <property name="toolTip">
-        <string> Push Button</string>
-       </property>
-       <property name="whatsThis">
-        <string>Push Button</string>
-       </property>
-       <property name="layoutDirection">
-        <enum>Qt::RightToLeft</enum>
-       </property>
-       <property name="colorTx" stdset="0">
-        <color>
-         <red>195</red>
-         <green>195</green>
-         <blue>195</blue>
-        </color>
-       </property>
-       <property name="colorBt" stdset="0">
-        <color>
-         <red>59</red>
-         <green>59</green>
-         <blue>59</blue>
-        </color>
-       </property>
+      <widget class="QPushButton" name="pushButton">
        <property name="text">
         <string>Закрыть</string>
        </property>
@@ -1822,29 +1658,24 @@
    <extends>QWidget</extends>
    <header>qprog.h</header>
   </customwidget>
-  <customwidget>
-   <class>QPush</class>
-   <extends>QWidget</extends>
-   <header>qpush.h</header>
-  </customwidget>
  </customwidgets>
  <resources>
   <include location="../resorce.qrc"/>
  </resources>
  <connections>
   <connection>
-   <sender>btClose</sender>
+   <sender>pushButton</sender>
    <signal>released()</signal>
    <receiver>HeroWin</receiver>
    <slot>close()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>645</x>
-     <y>479</y>
+     <x>560</x>
+     <y>595</y>
     </hint>
     <hint type="destinationlabel">
-     <x>348</x>
-     <y>250</y>
+     <x>500</x>
+     <y>438</y>
     </hint>
    </hints>
   </connection>
