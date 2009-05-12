@@ -44,6 +44,10 @@ statswinimpl::statswinimpl(Hero *h)
 	QAction *diarytrbt = menu->addAction(tr("Дневник"));
 	connect(diarytrbt, SIGNAL(triggered()), this, SLOT(on_btDiary_pressed()));
 	menu->addSeparator();
+
+        QAction *settingstrbt = menu->addAction(tr("Настройки"));
+        connect(settingstrbt,SIGNAL(triggered()),this,SLOT(settings()));
+        menu->addSeparator();
 	
 	QAction *exit = menu->addAction(tr("Выход"));
 	connect(exit, SIGNAL(triggered()), qApp, SLOT(quit()));
@@ -66,6 +70,12 @@ void statswinimpl::moveEvent(QMoveEvent * event)
 {
      QSettings settings("godville.net", "godvilleQT");
      settings.setValue("statWinGeometry", saveGeometry());
+}
+//=====================================================================================
+void statswinimpl::settings()
+{
+    settingsDialog = new Dialog(0);
+    settingsDialog->show();
 }
 //=====================================================================================
 void statswinimpl::stayontopToggle(bool c)

@@ -8,6 +8,7 @@
 #include "herowinimpl.h"
 #include "diarywinimpl.h"
 #include "heroMessager.h"
+#include "Dialog.h"
 //=====================================================================================
 class statswinimpl : public QWidget, public Ui::StatsWin
 {
@@ -35,10 +36,12 @@ private:
 	QTimer *timer;
 	QAction *showmess;
 	HeroMessager *mess;
+        Dialog *settingsDialog;
 	
 private slots:
 	void on_btInfo_pressed();
 	void on_btDiary_pressed();
+        void settings();
 };
 //=====================================================================================
 #endif
