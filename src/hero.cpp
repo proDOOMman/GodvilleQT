@@ -47,9 +47,9 @@ Hero::Hero(QObject * parent)
 void Hero::login(QString log, QString pass)
 {
 	logedin = false;
-	godName = log; 
-	QString data = "username="+log.toAscii()+"&password="+pass.toAscii();
-	net->post(loginReq, data.toAscii());
+        godName = log;
+        QString data = "username="+log+"&password="+pass;
+        net->post(loginReq, QTextCodec::codecForName("UTF-8")->fromUnicode(data));
         //может лучше использовать toLocal8Bit() ?
 }
 //=====================================================================================
@@ -447,7 +447,9 @@ void Hero::doBad()
 void Hero::say(QString phrase)
 {
         QString data = "god_phrase="+tr(phrase.toLocal8Bit());
-        net->post(sayReq, data.toLocal8Bit());
+        //net->post(sayReq, data.toLocal8Bit());
+        //закоментированная строка работает под Linux (кодировка UTF8, Но не работает под окнами)
+        net->post(sayReq, QTextCodec::codecForName("UTF-8")->fromUnicode(data));
         //может теперь будет говорить по русски?
 }
 //=====================================================================================

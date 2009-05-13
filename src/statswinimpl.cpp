@@ -47,6 +47,8 @@ statswinimpl::statswinimpl(Hero *h)
 
         QAction *settingstrbt = menu->addAction(tr("Настройки"));
         connect(settingstrbt,SIGNAL(triggered()),this,SLOT(settings()));
+        settingstrbt->setEnabled(false);
+        //потом раскомментировать
         menu->addSeparator();
 	
 	QAction *exit = menu->addAction(tr("Выход"));

@@ -95,8 +95,8 @@ void MainWindowImpl::loginDone(QString s)
 			pushButton->setText(tr("OK"));
 			pushButton->setDisabled(false);
 			QMessageBox msgBox;
-			msgBox.setWindowTitle(tr("Ошика!"));
-			msgBox.setText(tr("Неверный логин или пароль.\nА может на сервере че поменялось или поломалось..."));
+                        msgBox.setWindowTitle(tr("Ошибка!"));
+                        msgBox.setText(tr("Неверный логин или пароль.\nА может на сервере чё поменялось или поломалось..."));
 			msgBox.exec();
 		} else {
 			disconnect(hero, SIGNAL(done(QString)), this, SLOT(loginDone(QString)));
