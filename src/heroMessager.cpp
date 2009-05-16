@@ -3,8 +3,9 @@
 HeroMessager::HeroMessager()
 : QWidget()
 {
-	setupUi(this);
-
+        setupUi(this);
+        QSettings settings("godville.net", "godvilleQT");
+        setWindowOpacity(settings.value("popUpOp",100).toInt()/100);
 #ifdef Q_OS_MAC
     setWindowFlags(windowFlags() | Qt::FramelessWindowHint);
 #else

@@ -20,7 +20,7 @@
       <enum>QTabWidget::West</enum>
      </property>
      <property name="currentIndex">
-      <number>0</number>
+      <number>1</number>
      </property>
      <widget class="QWidget" name="soundTab">
       <attribute name="title">
@@ -123,6 +123,66 @@
        </item>
       </layout>
      </widget>
+     <widget class="QWidget" name="visual">
+      <attribute name="title">
+       <string>Visual</string>
+      </attribute>
+      <layout class="QVBoxLayout" name="verticalLayout_3">
+       <item>
+        <widget class="QLabel" name="label_3">
+         <property name="text">
+          <string>Прозрачность уведомлений</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QSlider" name="popUpOp">
+         <property name="maximum">
+          <number>100</number>
+         </property>
+         <property name="value">
+          <number>50</number>
+         </property>
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="label_4">
+         <property name="text">
+          <string>Прозрачность окна информации</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QSlider" name="statWinOp">
+         <property name="maximum">
+          <number>100</number>
+         </property>
+         <property name="value">
+          <number>100</number>
+         </property>
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <spacer name="verticalSpacer_2">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>150</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+      </layout>
+     </widget>
     </widget>
    </item>
    <item>
@@ -146,12 +206,12 @@
    <slot>setNum(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>261</x>
-     <y>74</y>
+     <x>134</x>
+     <y>82</y>
     </hint>
     <hint type="destinationlabel">
-     <x>380</x>
-     <y>69</y>
+     <x>134</x>
+     <y>77</y>
     </hint>
    </hints>
   </connection>
@@ -166,8 +226,8 @@
      <y>22</y>
     </hint>
     <hint type="destinationlabel">
-     <x>136</x>
-     <y>104</y>
+     <x>134</x>
+     <y>112</y>
     </hint>
    </hints>
   </connection>
@@ -198,8 +258,8 @@
      <y>25</y>
     </hint>
     <hint type="destinationlabel">
-     <x>368</x>
-     <y>97</y>
+     <x>134</x>
+     <y>105</y>
     </hint>
    </hints>
   </connection>
@@ -214,8 +274,8 @@
      <y>30</y>
     </hint>
     <hint type="destinationlabel">
-     <x>136</x>
-     <y>66</y>
+     <x>134</x>
+     <y>74</y>
     </hint>
    </hints>
   </connection>
@@ -247,6 +307,22 @@
     </hint>
     <hint type="destinationlabel">
      <x>318</x>
+     <y>268</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>buttonBox</sender>
+   <signal>accepted()</signal>
+   <receiver>Dialog</receiver>
+   <slot>accept()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>293</x>
+     <y>286</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>164</x>
      <y>268</y>
     </hint>
    </hints>

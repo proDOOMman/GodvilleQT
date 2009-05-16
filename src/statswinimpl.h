@@ -3,6 +3,7 @@
 //
 #include <QWidget>
 #include <QtGui>
+#include <QCloseEvent>
 #include "ui_statswin.h"
 #include "hero.h"
 #include "herowinimpl.h"
@@ -27,6 +28,7 @@ protected:
 	void keyPressEvent(QKeyEvent *event);
 	void resizeEvent(QResizeEvent *event);
         void moveEvent(QMoveEvent * event);
+        void closeEvent ( QCloseEvent * event );
 private:
 	Hero *hero;
 	herowinimpl *hwin;
@@ -42,6 +44,7 @@ private slots:
 	void on_btInfo_pressed();
 	void on_btDiary_pressed();
         void settings();
+        void updateSettings();
 };
 //=====================================================================================
 #endif

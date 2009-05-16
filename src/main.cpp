@@ -36,11 +36,11 @@ int main(int argc, char ** argv)
             QDir::home().mkdir(".godville");
         QFile::remove(QDir::home().absoluteFilePath(".godville/Debug.log"));
 #endif
-	qInstallMsgHandler(myMessageOutput);
+        //qInstallMsgHandler(myMessageOutput);
 	QApplication app( argc, argv );
         QTextCodec::setCodecForTr(QTextCodec::codecForName("UTF8"));
         MainWindowImpl win;
         win.show();
-        app.connect( &app, SIGNAL( lastWindowClosed() ), &app, SLOT( quit() ) );
+        //app.connect( &app, SIGNAL( lastWindowClosed() ), &app, SLOT( quit() ) );
 	return app.exec();
 }

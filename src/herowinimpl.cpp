@@ -30,7 +30,7 @@ void herowinimpl::update()
 {
 	QString str;
 	lbHero->setText(tr(hero->name.toAscii()));
-	lbGod->setText(tr(hero->godName.toAscii()));
+	lbGod->setText(hero->godName);
 	lbHail->setText(tr(hero->hail.toAscii()));
 	lbChar->setText(tr(hero->caracter.toAscii()));
 	lbAge->setText(tr(hero->age.toAscii()));

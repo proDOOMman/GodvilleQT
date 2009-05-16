@@ -47,9 +47,10 @@ statswinimpl::statswinimpl(Hero *h)
 
         QAction *settingstrbt = menu->addAction(tr("Настройки"));
         connect(settingstrbt,SIGNAL(triggered()),this,SLOT(settings()));
-        settingstrbt->setEnabled(false);
-        //потом раскомментировать
+        settingsDialog = new Dialog(0);
+        connect(settingsDialog,SIGNAL(accepted()),this,SLOT(updateSettings()));
         menu->addSeparator();
+        settingstrbt->setEnabled(false);
 	
 	QAction *exit = menu->addAction(tr("Выход"));
 	connect(exit, SIGNAL(triggered()), qApp, SLOT(quit()));
@@ -66,6 +67,20 @@ statswinimpl::statswinimpl(Hero *h)
 
         QSettings settings("godville.net", "godvilleQT");
         restoreGeometry(settings.value("statWinGeometry").toByteArray());
+        this->setWindowOpacity(settings.value("statWinOp",100).toInt()/100);
+}
+//=====================================================================================
+void statswinimpl::updateSettings()
+{
+    QSettings settings("godville.net", "godvilleQT");
+    this->setWindowOpacity(settings.value("statWinOp",100).toInt()/100);
+    mess->setWindowOpacity(settings.value("popUpOp",50).toInt()/100);
+}
+//=====================================================================================
+void statswinimpl::closeEvent(QCloseEvent *event)
+{
+    hide();
+    event->ignore();
 }
 //=====================================================================================
 void statswinimpl::moveEvent(QMoveEvent * event)
@@ -76,7 +91,6 @@ void statswinimpl::moveEvent(QMoveEvent * event)
 //=====================================================================================
 void statswinimpl::settings()
 {
-    settingsDialog = new Dialog(0);
     settingsDialog->show();
 }
 //=====================================================================================
@@ -89,6 +103,7 @@ void statswinimpl::stayontopToggle(bool c)
 	if (isHidden() || !isActiveWindow()){
 		show();
 		activateWindow();
+                raise();
         }
         QSettings settings("godville.net", "godvilleQT");
         restoreGeometry(settings.value("statWinGeometry").toByteArray());
@@ -103,9 +118,10 @@ void statswinimpl::resizeEvent(QResizeEvent *event)
 void statswinimpl::trayActivated(QSystemTrayIcon::ActivationReason r)
 {
 	if (r == QSystemTrayIcon::Trigger){
-		if (isHidden() || !isActiveWindow()){
+                if (isHidden()){
 			show();
 			activateWindow();
+                        raise();
 		} else hide();
 	}
 }
@@ -157,8 +173,14 @@ void statswinimpl::keyPressEvent(QKeyEvent *event)
 //=====================================================================================
 void statswinimpl::hideshow()
 {
-	if (isHidden()) show();
-	else hide();
+    qDebug() << "hideshow";
+    if (isHidden())
+        {
+        show();
+        activateWindow();
+        raise();
+        }
+    else hide();
 }
 //=====================================================================================
 void statswinimpl::loginDone(QString s)
@@ -182,11 +204,13 @@ void statswinimpl::on_btDiary_pressed()
 	diary->setDiary(hero->diary);
 	diary->show();
 	diary->activateWindow();
+        diary->raise();
 }
 //=====================================================================================
 void statswinimpl::on_btInfo_pressed()
 {
 	hwin->show();
 	hwin->activateWindow();
+        hwin->raise();
 }
 //=====================================================================================

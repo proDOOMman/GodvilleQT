@@ -2,16 +2,20 @@
 #define DIALOG_H
 
 #include <QSettings>
+#include <QCloseEvent>
 #include "ui_Dialog.h"
 
-class Dialog : public QDialog, private Ui::Dialog {
+class Dialog : public QDialog, private Ui::Dialog
+{
     Q_OBJECT
-    //Q_DISABLE_COPY(Dialog)
+    Q_DISABLE_COPY(Dialog)
 public:
-    explicit Dialog(QWidget *parent = 0);
+    Dialog(QWidget *parent = 0);
 private slots:
     void saveAll();
     void loadSettings();
+protected:
+    void closeEvent(QCloseEvent *event);
 };
 
 #endif // DIALOG_H

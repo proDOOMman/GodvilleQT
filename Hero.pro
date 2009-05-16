@@ -32,6 +32,6 @@ SOURCES = src/mainwindowimpl.cpp \
     src/Dialog.cpp
 RESOURCES += resorce.qrc
 LIBS += -L/usr/lib/qt4/plugins/designer \
-    -lqprogplug \
-    -L/usr/lib/qt4/plugins/designer \
-    -lqpushplug
+    -lqprogplug
+RC_FILE = main.rc
+OTHER_FILES += main.rc

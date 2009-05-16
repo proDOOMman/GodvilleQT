@@ -82,10 +82,10 @@ void Hero::parseHero(QString data)
 	QString ag0 = "</div> </div>";
 	
 	int pos = data.indexOf(nm)+nm.length();
-	name = data.mid(pos, data.indexOf(nm0, pos)-pos);
+        name = data.mid(pos, data.indexOf(nm0, pos)-pos);
 	
-	pos = data.indexOf(cr)+cr.length();
-	caracter = data.mid(pos, data.indexOf(cr0, pos)-pos);
+        pos = data.indexOf(cr)+cr.length();
+        caracter = data.mid(pos, data.indexOf(cr0, pos)-pos);
 	
 	pos = data.indexOf(hl)+hl.length();
 	hail = data.mid(pos, data.indexOf(hl0, pos)-pos);
@@ -446,10 +446,8 @@ void Hero::doBad()
 //=====================================================================================
 void Hero::say(QString phrase)
 {
-        QString data = "god_phrase="+tr(phrase.toLocal8Bit());
-        //net->post(sayReq, data.toLocal8Bit());
-        //закоментированная строка работает под Linux (кодировка UTF8, Но не работает под окнами)
-        net->post(sayReq, QTextCodec::codecForName("UTF-8")->fromUnicode(data));
+        QString data = "god_phrase="+phrase;
+        net->post(sayReq, data.toUtf8());
         //может теперь будет говорить по русски?
 }
 //=====================================================================================
