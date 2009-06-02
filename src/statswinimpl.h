@@ -38,7 +38,7 @@ private:
 	QTimer *timer;
 	QAction *showmess;
 	HeroMessager *mess;
-        Dialog *settingsDialog;
+        QDialog *settingsDialog;
 	
 private slots:
 	void on_btInfo_pressed();

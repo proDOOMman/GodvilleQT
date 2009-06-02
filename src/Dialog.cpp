@@ -21,6 +21,18 @@ void Dialog::loadSettings()
     critHealthFileName->setText(settings.value("CritHealth",QString()).toString());
     popUpOp->setValue(settings.value("popUpOp",100).toInt());
     statWinOp->setValue(settings.value("statWinOp",100).toInt());
+    QString notifyType = settings.value("notifyType").toString();
+    if(notifyType=="standart")
+        notify_standart->setChecked(true);
+    else
+        if(notifyType=="libnotify")
+            notify_libnotify->setChecked(true);
+    else
+        if(notifyType=="knotify3")
+            notify_knotify3->setChecked(true);
+    else
+        if(notifyType=="knotify4")
+            notify_knotify4->setChecked(true);
 }
 
 void Dialog::saveAll()
@@ -31,5 +43,16 @@ void Dialog::saveAll()
     settings.setValue("CritHealth",critHealthFileName->text());
     settings.setValue("statWinOp",statWinOp->value());
     settings.setValue("popUpOp",popUpOp->value());
+    if(notify_standart->isChecked())
+        settings.setValue("notifyType","standart");
+    else
+        if(notify_libnotify->isChecked())
+            settings.setValue("notifyType","libnotify");
+    else
+        if(notify_knotify3->isChecked())
+            settings.setValue("notifyType","knotify3");
+    else
+        if(notify_knotify4->isChecked())
+            settings.setValue("notifyType","knotify4");
     this->close();
 }

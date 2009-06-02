@@ -45,12 +45,12 @@ statswinimpl::statswinimpl(Hero *h)
 	connect(diarytrbt, SIGNAL(triggered()), this, SLOT(on_btDiary_pressed()));
 	menu->addSeparator();
 
+        settingsDialog = new Dialog(this);
+        connect(settingsDialog,SIGNAL(accepted()),this,SLOT(updateSettings()));
         QAction *settingstrbt = menu->addAction(tr("Настройки"));
         connect(settingstrbt,SIGNAL(triggered()),this,SLOT(settings()));
-        settingsDialog = new Dialog(0);
-        connect(settingsDialog,SIGNAL(accepted()),this,SLOT(updateSettings()));
         menu->addSeparator();
-        settingstrbt->setEnabled(false);
+        //settingstrbt->setEnabled(false);
 	
 	QAction *exit = menu->addAction(tr("Выход"));
 	connect(exit, SIGNAL(triggered()), qApp, SLOT(quit()));
@@ -91,7 +91,9 @@ void statswinimpl::moveEvent(QMoveEvent * event)
 //=====================================================================================
 void statswinimpl::settings()
 {
-    settingsDialog->show();
+    //может тут стоит создавать диалог?
+    //connect(settingsDialog,SIGNAL(rejected()),this,SLOT(deleteLater()));
+    settingsDialog->exec();
 }
 //=====================================================================================
 void statswinimpl::stayontopToggle(bool c)

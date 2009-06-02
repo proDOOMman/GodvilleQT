@@ -2,6 +2,7 @@ TEMPLATE = app
 QT = gui \
     core \
     network
+unix:QT += dbus
 CONFIG += qt \
     release \
     warn_on
