@@ -1,0 +1,20 @@
+[Desktop Entry]
+Categories=Game;
+Comment[ru]=
+Comment=
+Exec=godvilleQT
+GenericName[ru]=Client for ZPG godville.net
+GenericName=Client for ZPG godville.net
+Icon=/usr/share/pixmaps/godvilleQT.svg
+MimeType=
+Name[ru]=godvilleQT
+Name=godvilleQT
+Path=
+StartupNotify=true
+Terminal=false
+TerminalOptions=
+Type=Application
+X-DBUS-ServiceName=
+X-DBUS-StartupType=
+X-KDE-SubstituteUID=false
+X-KDE-Username=
