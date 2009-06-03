@@ -41,7 +41,17 @@ Hero::Hero(QObject * parent)
 	//update_details - все кроме дневника и героя
 	//update_hero_info - герой
 	
-	logedin = false;
+        logedin = false;
+
+        media = new Phonon::MediaObject(this);
+//        connect(media, SIGNAL(finished()), SLOT(slotFinished()));
+        audioOutput = new Phonon::AudioOutput(Phonon::MusicCategory, this);
+        Phonon::Path path = Phonon::createPath(media, audioOutput);
+        sound_delay = new QTimer(this);
+        connect(sound_delay,SIGNAL(timeout()),sound_delay,SLOT(stop()));
+        sound_delay->setInterval(15000);
+        sound_delay->start();
+        //потом брать из натроек
 }
 //=====================================================================================
 void Hero::login(QString log, QString pass)
@@ -96,12 +106,14 @@ void Hero::parseHero(QString data)
 //=====================================================================================
 void Hero::parseStats(QString data)
 {
+
 	/*QFile *f = new QFile("stats.txt");
 	f->open(QIODevice::ReadWrite);
 	f->write(data.toAscii());
-	f->close();*/
+        f->close();*/
+        QSettings settings("godville.net", "godvilleQT");
 	QString st, st0, tmp;
-	int pos;
+        int pos;
 
 //статистика
         st = "Столбов от столицы</span> <span class=\\\"field_content\\\">";
@@ -177,11 +189,13 @@ void Hero::parseStats(QString data)
 	st = "Здоровье</label> <div class=\\\"field_content\\\">";
 	st0 = "</div> </div>";
 	pos = data.indexOf(st)+st.length();
-	if (pos > st.length()){
+        if (pos > st.length()){
 		tmp = data.mid(pos, data.indexOf(st0, pos)-pos); //23 / 124
 		health = tmp.left(tmp.indexOf(" / ")).toInt();
 		pos = tmp.indexOf(" / ")+3;
-		healthAll = tmp.mid(pos, tmp.length()-pos).toInt();
+                healthAll = tmp.mid(pos, tmp.length()-pos).toInt();
+                if(health<settings.value("CritHealthValue",20).toInt())
+                    emit warning();
 	}
 	
 	st = "Инвентарь</label> <div class=\\\"field_content\\\">";
@@ -485,5 +499,15 @@ QString Hero::convertString(QByteArray bytes)
 	return str;
 }
 //=====================================================================================
+void Hero::warning()
+{
+    if(sound_delay->isActive())
+        return;
+    QSettings settings("godville.net", "godvilleQT");
+    QString fileName = settings.value("CritHealth",QString()).toString();
+    media->setCurrentSource(Phonon::MediaSource(fileName));
+    media->play();
+    sound_delay->start();
+}
 //
 

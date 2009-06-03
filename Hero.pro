@@ -1,7 +1,8 @@
 TEMPLATE = app
 QT = gui \
     core \
-    network
+    network \
+    phonon
 unix:QT += dbus
 CONFIG += qt \
     release \
@@ -36,3 +37,4 @@ LIBS += -L/usr/lib/qt4/plugins/designer \
     -lqprogplug
 RC_FILE = main.rc
 OTHER_FILES += main.rc
+unix:INCLUDEPATH += /usr/include

@@ -39,7 +39,6 @@ private:
 	QAction *showmess;
 	HeroMessager *mess;
         QDialog *settingsDialog;
-	
 private slots:
 	void on_btInfo_pressed();
 	void on_btDiary_pressed();

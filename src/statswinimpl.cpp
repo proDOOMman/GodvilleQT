@@ -1,5 +1,6 @@
 #include "statswinimpl.h"
 //=====================================================================================
+
 statswinimpl::statswinimpl(Hero *h) 
 : QWidget(0,0)
 {

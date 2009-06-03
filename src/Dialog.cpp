@@ -5,13 +5,22 @@ Dialog::Dialog(QWidget *parent) :
     setupUi(this);
     connect(buttonBox,SIGNAL(accepted()),this,SLOT(saveAll()));
     loadSettings();
+#ifdef Q_OS_WIN32
+    notify_knotify3->setEnabled(false);
+    notify_knotify4->setEnabled(false);
+    notify_libnotify->setEnabled(false);
+#endif
+    media = new Phonon::MediaObject(this);
+//    connect(media, SIGNAL(finished()), SLOT(slotFinished()));
+    audioOutput = new Phonon::AudioOutput(Phonon::MusicCategory, this);
+    Phonon::Path path = Phonon::createPath(media, audioOutput);
 }
 
-void Dialog::closeEvent(QCloseEvent *event)
+/*void Dialog::closeEvent(QCloseEvent *event)
 {
     hide();
     event->ignore();
-}
+}*/
 
 void Dialog::loadSettings()
 {
@@ -55,4 +64,16 @@ void Dialog::saveAll()
         if(notify_knotify4->isChecked())
             settings.setValue("notifyType","knotify4");
     this->close();
+}
+
+void Dialog::on_critHealthPlay_released()
+{
+    media->setCurrentSource(Phonon::MediaSource(critHealthFileName->text()));
+    media->play();
+}
+
+void Dialog::on_critHealthFileChoose_released()
+{
+    critHealthFileName->setText(QFileDialog::getOpenFileName(this,
+     tr("Выберите сигнал"), QDir::homePath(), tr("Sound Files (*.wav *.ogg *.mp3 *.flac);;All Files(*.*)")));
 }

@@ -5,10 +5,7 @@ HeroMessager::HeroMessager()
 {
         QSettings settings("godville.net", "godvilleQT");
         notifyType = settings.value("notifyType",QString("standart")).toString();
-        if(notifyType=="standart")
-        {
         setupUi(this);
-        QSettings settings("godville.net", "godvilleQT");
         setWindowOpacity(settings.value("popUpOp",100).toInt()/100);
 #ifdef Q_OS_MAC
     setWindowFlags(windowFlags() | Qt::FramelessWindowHint);
@@ -30,8 +27,7 @@ HeroMessager::HeroMessager()
 	hideTime = 500;
 	showTimer->stop();
 	hideTimer->stop();
-	stayTimer->stop();
-        }
+        stayTimer->stop();
 }
 //=====================================================================================
 void HeroMessager::showT()
@@ -61,7 +57,10 @@ void HeroMessager::stay()
 }
 //=====================================================================================
 void HeroMessager::open(QString headS, QString textS)
-{        if(notifyType=="standart")
+{
+    QSettings settings("godville.net", "godvilleQT");
+    notifyType = settings.value("notifyType",QString("standart")).toString();
+    if(notifyType=="standart")
         {
 	showTimer->stop();
 	hideTimer->stop();

@@ -1,6 +1,11 @@
 #ifndef HERO_H
 #define HERO_H
 #include <QtNetwork>
+
+#include <phonon/mediaobject.h>
+#include <phonon/mediasource.h>
+#include <phonon/path.h>
+#include <phonon/audiooutput.h>
 //=====================================================================================
 struct SDiaryNote{
 	QString name;
@@ -26,12 +31,15 @@ public:
         questName, kills, money, falls, lastEvent, cityDistance, bricks, lastNote;
 	QStringList items, equipment;
 	QList<SDiaryNote> diary, tmpdiary;
-	
+
 signals:
 	void done(QString);
-	
+
 public slots:
 	void read(QNetworkReply*);
+
+private slots:
+        void warning();
 
 private:
 	QString convertString(QByteArray bytes);
@@ -43,6 +51,10 @@ private:
 	QNetworkAccessManager *net;
 	QString url;
 	QNetworkRequest loginReq, statsReq, heroReq, encourageReq, punishReq, sayReq;
+
+        Phonon::MediaObject *media;
+        Phonon::AudioOutput *audioOutput;
+        QTimer *sound_delay;
 };
 //=====================================================================================
 #endif
