@@ -35,6 +35,12 @@ Hero::Hero(QObject * parent)
 	sayReq = QNetworkRequest(QUrl("http://www.godville.net/hero/god_phrase"));
 	sayReq.setRawHeader("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8");
 	sayReq.setRawHeader("X-Requested-With","XMLHttpRequest");
+        pranaRestoreReq = QNetworkRequest(QUrl("http://www.godville.net/hero/acc_restore_power"));
+        pranaRestoreReq.setRawHeader("X-Requested-With","XMLHttpRequest");
+        toArena = QNetworkRequest(QUrl("http://www.godville.net/hero/to_arena"));
+        toArena.setRawHeader("X-Requested-With","XMLHttpRequest");
+        updateArena = QNetworkRequest(QUrl("http://www.godville.net/hero/update_arena"));
+        updateArena.setRawHeader("X-Requested-With","XMLHttpRequest");
 	//update_hero_stats - статистика
 	//update_timings - инвентарь
 	//update_last_events - дневник
@@ -51,7 +57,7 @@ Hero::Hero(QObject * parent)
         connect(sound_delay,SIGNAL(timeout()),sound_delay,SLOT(stop()));
         sound_delay->setInterval(15000);
         sound_delay->start();
-        //потом брать из натроек
+        //потом брать интервал из натроек
 }
 //=====================================================================================
 void Hero::login(QString log, QString pass)
@@ -60,7 +66,6 @@ void Hero::login(QString log, QString pass)
         godName = log;
         QString data = "username="+log+"&password="+pass;
         net->post(loginReq, QTextCodec::codecForName("UTF-8")->fromUnicode(data));
-        //может лучше использовать toLocal8Bit() ?
 }
 //=====================================================================================
 void Hero::updateStats()
@@ -373,6 +378,7 @@ void Hero::alert(QString str)
 //=====================================================================================
 void Hero::read(QNetworkReply* r)
 {
+    qDebug() << r->url();
 	//login
 	if (r->request().url() == loginReq.url()){
 		QString god_session = r->rawHeader("Set-Cookie");
@@ -414,6 +420,12 @@ void Hero::read(QNetworkReply* r)
 	//stats
 	if (r->request().url() == statsReq.url()){
 		QByteArray bytes = r->readAll();
+                QFile file("/tmp/debug.log");
+                file.open(QIODevice::Append|QIODevice::Text);
+                file.write(QString::fromUtf8(bytes).toAscii());
+                file.write(QString("\n=========\n").toAscii());
+                file.close();
+                //FIXME: выкинуть нах это убожество convertString
 		QString str = convertString(bytes);
 		parseStats(str);
 		//qDebug() << "stats parsed";
@@ -445,7 +457,7 @@ void Hero::read(QNetworkReply* r)
 	if (r->request().url() == sayReq.url()){
 		updateStats();
 		emit done("phrase");
-	}
+        }
 }
 //=====================================================================================
 void Hero::doGood()
@@ -458,6 +470,11 @@ void Hero::doBad()
 	if (logedin) net->get(punishReq);
 }
 //=====================================================================================
+void Hero::pranaRestore()
+{
+    if (logedin) net->get(pranaRestoreReq);
+}
+//=====================================================================================
 void Hero::say(QString phrase)
 {
         QString data = "god_phrase="+phrase;
@@ -468,7 +485,7 @@ void Hero::say(QString phrase)
 QString Hero::convertString(QByteArray bytes)
 {
 	QString str = QString(bytes);
-	str.replace("\\u00ab", "«");
+        /*str.replace("\\u00ab", "«");
 	str.replace("\\u00bb", "»");
 	while (str.indexOf("\\u0") >= 0){
 		int pos = str.indexOf("\\u0");
@@ -488,7 +505,17 @@ QString Hero::convertString(QByteArray bytes)
 		}
 		
 		str.replace("\\u"+tmp, QString(bytes));
-	}
+        }*/
+
+        while (str.contains("\\u")){
+                int pos = str.indexOf("\\u");
+                QString tmp = str.mid(pos+2,4);
+                bool ok;
+                QChar ch(tmp.toInt(&ok, 16));
+                if(!ok)
+                    qDebug() << "O_o decoding error o_O";
+                str.replace("\\u"+tmp, ch);
+        }
 	
 	str.replace("&quot;", "\"");
 	str.replace("\\n", "");
@@ -504,6 +531,8 @@ void Hero::warning()
     if(sound_delay->isActive())
         return;
     QSettings settings("godville.net", "godvilleQT");
+    if(settings.value("Sound").toInt()==0)
+        return;
     QString fileName = settings.value("CritHealth",QString()).toString();
     media->setCurrentSource(Phonon::MediaSource(fileName));
     media->play();
