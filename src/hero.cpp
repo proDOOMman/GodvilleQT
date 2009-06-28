@@ -456,11 +456,11 @@ void Hero::read(QNetworkReply* r)
 	if (r->request().url() == statsReq.url()){
                 QByteArray bytes = data;
                 QString str = convertString(bytes);
-                QFile file("/tmp/debug.log");
+                /*QFile file("/tmp/debug.log");
                 file.open(QIODevice::Append|QIODevice::Text);
                 file.write(str.toLocal8Bit());
                 file.write(QString("\n=========\n").toAscii());
-                file.close();
+                file.close();*/
 		parseStats(str);
 		//qDebug() << "stats parsed";
 		emit done("stats");
@@ -494,14 +494,14 @@ void Hero::read(QNetworkReply* r)
         }
                 QByteArray bytes = data;
                 QString str = convertString(bytes);
-                QFile file("/tmp/debug1.log");
+                /*QFile file("/tmp/debug1.log");
                 file.open(QIODevice::Append|QIODevice::Text);
                 file.write(r->url().path().toAscii()+"\n = = = = \n");
                 file.write(str.toLocal8Bit());
                 foreach(QByteArray ba, r->rawHeaderList())
                     file.write(ba+"\n---\n");
                 file.write(QString("\n=========\n").toAscii());
-                file.close();
+                file.close();*/
                 parseStats(str);
 }
 //=====================================================================================
