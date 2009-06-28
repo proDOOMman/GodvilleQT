@@ -78,16 +78,16 @@ void HeroMessager::open(QString headS, QString textS)
         headS.replace('"',"\\\"");
         textS.replace('"',"\\\"");
             if(notifyType=="libnotify")
-                QProcess::startDetached(QString("notify-send \"%1\" \"%2\" -t 4000").arg(tr(headS.toAscii())).arg(tr(textS.toAscii())));
+                QProcess::startDetached(QString("notify-send \"%1\" \"%2\" -t 4000").arg(headS).arg(textS));
         else
             if(notifyType=="knotify3")
             {
-                QProcess::startDetached(QString("kdialog --passivepopup \"%1\" 4").arg(tr(textS.toAscii())));
+                QProcess::startDetached(QString("kdialog --passivepopup \"%1\" 4").arg(textS));
             }
         else
             if(notifyType=="knotify4")
             {
-                emit knotifySend(tr(headS.toAscii()),tr(textS.toAscii()));
+                emit knotifySend(headS,textS);
             }
     }
 #endif

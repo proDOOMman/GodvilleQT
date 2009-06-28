@@ -1,4 +1,5 @@
 TEMPLATE = app
+TARGET = godvilleQT
 QT = gui \
     core \
     network \

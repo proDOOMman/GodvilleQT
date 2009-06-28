@@ -87,13 +87,13 @@ void Hero::parseHero(QString data)
 	f->write(data.toAscii());
 	f->close();*/
 	
-	QString nm = "Имя</label> <div class=\\\"field_content\\\">";
+        QString nm = trUtf8("Имя</label> <div class=\\\"field_content\\\">");
 	QString nm0 = "</div> </div>";
-	QString cr = "Характер</span> <span class=\\\"field_content\\\">";
+        QString cr = trUtf8("Характер</span> <span class=\\\"field_content\\\">");
 	QString cr0 = "</span> </div>";
-	QString hl = "Девиз</label> <div class=\\\"field_content\\\"><i>";
+        QString hl = trUtf8("Девиз</label> <div class=\\\"field_content\\\"><i>");
 	QString hl0 = "</i></div> </div>";
-	QString ag = "Возраст</label> <div class=\\\"field_content\\\">";
+        QString ag = trUtf8("Возраст</label> <div class=\\\"field_content\\\">");
 	QString ag0 = "</div> </div>";
 	
 	int pos = data.indexOf(nm)+nm.length();
@@ -111,7 +111,14 @@ void Hero::parseHero(QString data)
 //=====================================================================================
 void Hero::parseStats(QString data)
 {
-
+    if(data=="window.location.href = \"/hero\";")
+    {
+        qDebug() << "Arena?";
+        QNetworkRequest req(QUrl("http://www.godville.net/hero"));
+        req.setRawHeader("X-Requested-With","XMLHttpRequest");
+        net->get(req);
+        return;
+    }
 	/*QFile *f = new QFile("stats.txt");
 	f->open(QIODevice::ReadWrite);
 	f->write(data.toAscii());
@@ -121,7 +128,7 @@ void Hero::parseStats(QString data)
         int pos;
 
 //статистика
-        st = "Столбов от столицы</span> <span class=\\\"field_content\\\">";
+        st = trUtf8("Столбов от столицы</span> <span class=\\\"field_content\\\">");
 	st0 = "</span> </div>";
 	pos = data.indexOf(st)+st.length();
 	if (pos > st.length())
@@ -129,7 +136,7 @@ void Hero::parseStats(QString data)
 	//else cityDistance = "в городе";
         else
         {
-            st = "Город</span> <span class=\\\"field_content\\\">";
+            st = trUtf8("Город</span> <span class=\\\"field_content\\\">");
             st0 = "</span> </div>";
             pos = data.indexOf(st)+st.length();
             if (pos > st.length())
@@ -137,19 +144,19 @@ void Hero::parseStats(QString data)
         }
 
 	
-	st = "Кирпичей для храма</span><span class=\\\"field_content\\\">";
+        st = trUtf8("Кирпичей для храма</span><span class=\\\"field_content\\\">");
 	st0 = "</span>";
 	pos = data.indexOf(st)+st.length();
 	if (pos > st.length())
 		bricks = data.mid(pos, data.indexOf(st0, pos)-pos);
 	
-	st = "Побед / Поражений</span> <span class=\\\"field_content\\\">";
+        st = trUtf8("Побед / Поражений</span> <span class=\\\"field_content\\\">");
 	st0 = "</span> </div>";
 	pos = data.indexOf(st)+st.length();
 	if (pos > st.length())
 		falls = data.mid(pos, data.indexOf(st0, pos)-pos);
 	
-	st = "Смертей</span> <span class=\\\"field_content\\\">";
+        st = trUtf8("Смертей</span> <span class=\\\"field_content\\\">");
 	st0 = "</span> </div>";
 	pos = data.indexOf(st)+st.length();
 	if (pos > st.length()){
@@ -157,23 +164,23 @@ void Hero::parseStats(QString data)
 		deaths = tmp.toInt();
 	}
 	
-	st = "Убито монстров</span> <span class=\\\"field_content\\\">";
+        st = trUtf8("Убито монстров</span> <span class=\\\"field_content\\\">");
 	st0 = "</span> </div>";
 	pos = data.indexOf(st)+st.length();
 	if (pos > st.length())
 		kills = data.mid(pos, data.indexOf(st0, pos)-pos);
 	
-	st = "Золотых</label> <div class=\\\"field_content\\\">";
+        st = trUtf8("Золотых</label> <div class=\\\"field_content\\\">");
 	st0 = "</div> </div>";
 	pos = data.indexOf(st)+st.length();
 	if (pos > st.length())
 		money = data.mid(pos, data.indexOf(st0, pos)-pos);
 
-	st = "Задание</label> <div class=\\\"field_content\\\">";//<div class=\"new_line\"> <div class=\"pr_bg\" style=\"width:100 background-color:pink;\"> <div id=\"pr4\" class=\"pr_bar\" style=\"width:63%; margin-bottom: -12px;\"></div> </div>
-	st0 = "</div> <div";
+        st = trUtf8("Задание</label> <div class=\\\"field_content\\\">");//<div class=\"new_line\"> <div class=\"pr_bg\" style=\"width:100 background-color:pink;\"> <div id=\"pr4\" class=\"pr_bar\" style=\"width:63%; margin-bottom: -12px;\"></div> </div>
+        st0 = "</div> <div";
 	pos = data.indexOf(st)+st.length();
 	if (pos > st.length()){
-		tmp = data.mid(pos+6, data.indexOf(st0, pos)-pos-6);
+                tmp = data.mid(pos+1, data.indexOf(st0, pos)-pos-1);
 		quest = tmp.toInt();
 	}
 	
@@ -191,7 +198,7 @@ void Hero::parseStats(QString data)
 		questPercent = 100 - tmp.toInt();
 	}
 	
-	st = "Здоровье</label> <div class=\\\"field_content\\\">";
+        st = trUtf8("Здоровье</label> <div class=\\\"field_content\\\">");
 	st0 = "</div> </div>";
 	pos = data.indexOf(st)+st.length();
         if (pos > st.length()){
@@ -203,16 +210,16 @@ void Hero::parseStats(QString data)
                     emit warning();
 	}
 	
-	st = "Инвентарь</label> <div class=\\\"field_content\\\">";
+        st = trUtf8("Инвентарь</label> <div class=\\\"field_content\\\">");
 	st0 = "</div> </div>";
 	pos = data.indexOf(st)+st.length();
 	if (pos > st.length()){
-		tmp = data.mid(pos, data.indexOf(st0, pos)-pos); //5 / 10
-		pos = tmp.indexOf(" / ")+3;
-		goods =  tmp.mid(pos, tmp.length()-pos).toInt();
+                tmp = data.mid(pos, data.indexOf(st0, pos)-pos); //5 / 10
+                pos = tmp.indexOf(" / ")+3;
+                goods =  tmp.mid(pos, tmp.length()-pos).toInt();
 	}
 	
-	st = "Уровень</label> <div class=\\\"field_content\\\">";
+        st = trUtf8("Уровень</label> <div class=\\\"field_content\\\">");
 	st0 = "</div> </div>";
 	pos = data.indexOf(st)+st.length();
 	if (pos > st.length()){
@@ -232,7 +239,7 @@ void Hero::parseStats(QString data)
 	
 	
 //вещи
-	st = "В карманах у героя можно найти:</span> <UL> <li> ";
+        st = trUtf8("В карманах у героя можно найти:</span> <UL> <li> ");
 	st0 = " </li> <li> ";
 	pos = data.indexOf(st)+st.length();
 	if (pos > st.length()){
@@ -276,9 +283,9 @@ void Hero::parseStats(QString data)
 			pos = data.indexOf(st, pos)+st.length();
 		}
 	}
-	
+
 //дневник
-	pos = data.indexOf("Дневник героя");
+        pos = data.indexOf(trUtf8("Дневник героя"));
 	if (pos >= 0){
 		st = "<div class=\\\"d_capt\\\">";
 		st0= "</div>";
@@ -295,7 +302,10 @@ void Hero::parseStats(QString data)
 				if (pos1 >= 0)
 					dn.name = dn.name.left(pos1);
 				dn.details.clear();
-				tmpdiary.append(dn);
+                                if(diaryUp)
+                                    tmpdiary.append(dn);
+                                else
+                                    tmpdiary.prepend(dn);
 				pos = data.indexOf(st, pos)+st.length();
 			}
 			//qDebug() << "new diary data parsed";
@@ -303,15 +313,16 @@ void Hero::parseStats(QString data)
 	}
 	
 //вести с полей
-	st = "Вести с полей</legend> <div class=\\\"new_line\\\">";
+        st = trUtf8("Вести с полей</legend> <div class=\\\"new_line\\\">");
 	st0 = "</div>";
-	pos = data.indexOf(st)+st.length();
-	lastNote = "";
-	if (pos > st.length())
-		lastNote = data.mid(pos, data.indexOf(st0, pos)-pos);
+        pos = data.indexOf(st)+st.length();
+        if (pos > st.length())
+            lastNote = data.mid(pos, data.indexOf(st0, pos)-pos);
+        else
+            lastNote = "";
 	
 //прана
-	st = "Прана</label> <div class=\\\"field_content\\\">";
+        st = trUtf8("Прана</label> <div class=\\\"field_content\\\">");
 	st0 = "%";
 	pos = data.indexOf(st)+st.length();
 	if (pos > st.length()){
@@ -325,30 +336,41 @@ void Hero::parseStats(QString data)
 //=====================================================================================
 void Hero::updateDiary()
 {
+        //qDebug() << previousNote << " - " << lastNote;
+        //qDebug() << (previousNote!=lastNote);
 	if (tmpdiary.count() > 0){
 		SDiaryNote dn = tmpdiary.at(tmpdiary.count()-1);
-		dn.details.append(lastNote);
-		tmpdiary.replace(tmpdiary.count()-1, dn);
+                if((previousNote!=lastNote))
+                {
+                    dn.details.append(lastNote);
+                    tmpdiary.replace(tmpdiary.count()-1, dn);
+                }
 	} else {
 		if ((lastNote != "")&&(diary.count() > 0)){
 			SDiaryNote dn = diary.at(diary.count()-1);
-			dn.details.append(lastNote);
-			diary.replace(diary.count()-1, dn);
+                        if(previousNote!=lastNote)
+                        {
+                            dn.details.append(lastNote);
+                            diary.replace(diary.count()-1, dn);
+                        }
 		}
-	}
+        }
 	
 	if (diary.count() <= 0)
-		for (int i = 0; i < tmpdiary.count(); i++){
+                /*for (int i = 0; i < tmpdiary.count(); i++){
 			SDiaryNote dn = tmpdiary.at(i);
 			diary.append(dn);
-		}
+                }*/
+            foreach(SDiaryNote dn, tmpdiary)
+                diary.append(dn);
 	else if (tmpdiary.count() > 0){
 		SDiaryNote dn = tmpdiary.at(tmpdiary.count()-1);
 		if (diary.at(diary.count()-1).name == dn.name){
 			SDiaryNote dn = diary.at(diary.count()-1);
 			bool append = true;
 			if (dn.details.count() > 0)
-				if ((dn.details.at(dn.details.count()-1) == lastNote)&&(dn.details.count() > 1)){
+                                if (((dn.details.at(dn.details.count()-1) == lastNote)&&(dn.details.count() > 1))
+                                    ||(previousNote==lastNote)) {
 					lastNote = "";
 					append = false;
 				}
@@ -356,6 +378,9 @@ void Hero::updateDiary()
 			diary.replace(diary.count()-1, dn);
 		} else diary.append(dn);
 	}
+
+        if(!lastNote.isEmpty())
+            previousNote = lastNote;
 	//qDebug() << "Diary updated";
 	/*
 	QString str;
@@ -378,11 +403,21 @@ void Hero::alert(QString str)
 //=====================================================================================
 void Hero::read(QNetworkReply* r)
 {
-    qDebug() << r->url();
+    //qDebug() << r->url();
+
+    QByteArray data = r->readAll();
+    QString dataStr = convertString(data);
+    int pos = dataStr.indexOf("WG.sort_last('down')");
+    if(pos>0)
+        diaryUp = false;
+    pos = dataStr.indexOf("WG.sort_last('up')");
+    if(pos>0)
+        diaryUp = true;
+
 	//login
 	if (r->request().url() == loginReq.url()){
 		QString god_session = r->rawHeader("Set-Cookie");
-		QByteArray bytes = r->readAll();
+                QByteArray bytes = data;
 		QString str = QString(bytes);
 		if (str.indexOf("redirected") < 0){
 			logedin = false;
@@ -419,14 +454,13 @@ void Hero::read(QNetworkReply* r)
 	
 	//stats
 	if (r->request().url() == statsReq.url()){
-		QByteArray bytes = r->readAll();
+                QByteArray bytes = data;
+                QString str = convertString(bytes);
                 QFile file("/tmp/debug.log");
                 file.open(QIODevice::Append|QIODevice::Text);
-                file.write(QString::fromUtf8(bytes).toAscii());
+                file.write(str.toLocal8Bit());
                 file.write(QString("\n=========\n").toAscii());
                 file.close();
-                //FIXME: выкинуть нах это убожество convertString
-		QString str = convertString(bytes);
 		parseStats(str);
 		//qDebug() << "stats parsed";
 		emit done("stats");
@@ -434,7 +468,7 @@ void Hero::read(QNetworkReply* r)
 	
 	//hero
 	if (r->request().url() == heroReq.url()){
-		QByteArray bytes = r->readAll();
+                QByteArray bytes = data;
 		QString str = convertString(bytes);
 		parseHero(str);
 		//qDebug() << "hero parsed";
@@ -458,6 +492,17 @@ void Hero::read(QNetworkReply* r)
 		updateStats();
 		emit done("phrase");
         }
+                QByteArray bytes = data;
+                QString str = convertString(bytes);
+                QFile file("/tmp/debug1.log");
+                file.open(QIODevice::Append|QIODevice::Text);
+                file.write(r->url().path().toAscii()+"\n = = = = \n");
+                file.write(str.toLocal8Bit());
+                foreach(QByteArray ba, r->rawHeaderList())
+                    file.write(ba+"\n---\n");
+                file.write(QString("\n=========\n").toAscii());
+                file.close();
+                parseStats(str);
 }
 //=====================================================================================
 void Hero::doGood()
@@ -518,9 +563,9 @@ QString Hero::convertString(QByteArray bytes)
         }
 	
 	str.replace("&quot;", "\"");
-	str.replace("\\n", "");
-	str.replace("\\t", "");
-	str.replace("\\r", "");
+        str.remove("\\n");
+        str.remove("\\t");
+        str.remove("\\r");
 	while (str.indexOf("  ") >= 0) str.replace("  ", " ");
 	
 	return str;

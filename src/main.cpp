@@ -38,6 +38,7 @@ int main(int argc, char ** argv)
 #endif
         //qInstallMsgHandler(myMessageOutput);
 	QApplication app( argc, argv );
+        QCoreApplication::setApplicationName("GodvilleQT");
         QTextCodec::setCodecForTr(QTextCodec::codecForName("UTF8"));
         MainWindowImpl win;
         win.show();

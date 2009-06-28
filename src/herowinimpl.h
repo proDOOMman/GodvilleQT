@@ -15,7 +15,8 @@ protected:
 	void showEvent(QShowEvent *event);
 	void keyPressEvent(QKeyEvent *event);
 private slots:
-	void doGood();
+        void on_pushButton_2_released();
+ void doGood();
 	void doBad();
 	void say();
 private:

@@ -63,7 +63,7 @@ void Dialog::saveAll()
     else
         if(notify_knotify4->isChecked())
             settings.setValue("notifyType","knotify4");
-    this->close();
+    //this->close();
 }
 
 void Dialog::on_critHealthPlay_released()

@@ -9,7 +9,7 @@ diarywinimpl::diarywinimpl()
 	setWindowFlags(Qt::Tool);
 	desk = qApp->desktop()->screenGeometry();
 	move((desk.width()-width())/2, (desk.height()-height())/2);
-	oldrecs = loadDiary();
+        oldrecs = loadDiary();
 	offset = 0;
 	first = true;
 }
@@ -32,8 +32,8 @@ void diarywinimpl::saveDiary(QString text)
 #else
         QFile f(QDir::home().absoluteFilePath(".godville/diary.htm"));
 #endif
-        f.open(QIODevice::WriteOnly);
-        f.write(text.toAscii());
+        f.open(QIODevice::WriteOnly|QIODevice::Text);
+        f.write(text.toUtf8());
         f.close();
 }
 //=====================================================================================
@@ -46,8 +46,8 @@ QString diarywinimpl::loadDiary()
         QFile f(QDir::home().absoluteFilePath(".godville/diary.htm"));
 #endif
         if(f.exists()){
-                f.open(QIODevice::ReadOnly);
-                res = f.readAll();
+                f.open(QIODevice::ReadOnly|QIODevice::Text);
+                res = QString::fromUtf8(f.readAll());
                 f.close();
 	}
 	return res;
@@ -55,6 +55,7 @@ QString diarywinimpl::loadDiary()
 //=====================================================================================
 void diarywinimpl::setDiary(QList<SDiaryNote> diary)
 {
+    //выводить, к примеру, по 10 записей
 	text->setText("");
 	QString str = "";
 	if (first&&(oldrecs != "")&&(diary.count() > 0)){
@@ -69,7 +70,19 @@ void diarywinimpl::setDiary(QList<SDiaryNote> diary)
 			str += "<div style=\"margin-left: 30px;\"><i>"+dn.details.at(j)+"</i></div>\n";
 	}
 
-        text->setText(tr(str.toAscii())+tr(oldrecs.toAscii()));
+        text->setText(str+oldrecs);
 	saveDiary(str+oldrecs);
 }
 //=====================================================================================
+
+void diarywinimpl::on_upButton_released()
+{
+    if(spinBox->maximum()!=0)
+    spinBox->setValue((spinBox->value()+1)%spinBox->maximum());
+}
+
+void diarywinimpl::on_downButton_released()
+{
+    if(spinBox->maximum()!=0)
+    spinBox->setValue((spinBox->value()-1)%spinBox->maximum());
+}

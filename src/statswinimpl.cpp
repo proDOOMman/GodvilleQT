@@ -138,19 +138,21 @@ void statswinimpl::update()
 //заполнение формы
 void statswinimpl::updateInfo()
 {
-	QString s;
-	lbLevel->setText(s.setNum(hero->level));
+        //QString s;
+        lbLevel->setText(QString::number(hero->level));
 	pbLevel->setValue(hero->expa);
-	lbItems->setText(s.setNum(hero->items.count())+" / "+s.setNum(hero->goods));
+        lbItems->setText(QString::number(hero->items.count())+" / "+QString::number(hero->goods));
         lbHealth->setText(QString::number(hero->health)+" / "+QString::number(hero->healthAll));
 	if (hero->healthAll > 0)
 		pbHealth->setValue(int((float(hero->health) / float(hero->healthAll))*100.00));
-	lbPrane->setText(s.setNum(hero->prane)+"%");
+        lbPrane->setText(QString::number(hero->prane)+"%");
 	pbPrane->setValue(hero->prane);
-	lbQuestNum->setText(tr("№ ")+s.setNum(hero->quest));
+        lbQuestNum->setText(tr("№ ")+QString::number(hero->quest));
 	pbQuest->setValue(hero->questPercent);
-	lbQuestName->setText(tr(hero->questName.toAscii()));
-	lbMoney->setText(tr("Капитал: "+hero->money.toAscii()));
+        //lbQuestName->setText(tr(hero->questName.toAscii()));
+        lbQuestName->setText(hero->questName);
+        //lbMoney->setText(tr("Капитал: "+hero->money.toAscii()));
+        lbMoney->setText(tr("Капитал: ")+hero->money);
 	//qDebug() << "stats updated";
 	if ((hero->diary.count() > 0)&& showmess->isChecked()){
 		QString head = hero->diary.at(hero->diary.count()-1).time;
@@ -159,7 +161,7 @@ void statswinimpl::updateInfo()
 		if (hero->diary.count() > 0){
 			if (hero->diary.at(hero->diary.count()-1).details.count() > 1){
 				if (hero->lastNote != ""){
-					head = "Вести с полей";
+                                        head = trUtf8("Вести с полей");
 					text = hero->lastNote;
 				} else showmes = false;
 			}
@@ -195,8 +197,10 @@ void statswinimpl::loginDone(QString s)
 	}
 	if (s == "hero"){
 		//qDebug() << "hero updated";
-		lbHail->setText(tr(hero->hail.toAscii()));
-		lbName->setText(tr(hero->name.toAscii()));
+                //lbHail->setText(tr(hero->hail.toAscii()));
+                //lbName->setText(tr(hero->name.toAscii()));
+                lbHail->setText(hero->hail);
+                lbName->setText(hero->name);
 		hwin->update();
 	}
 	if (s == "phrase") hwin->btSay->setEnabled(true);

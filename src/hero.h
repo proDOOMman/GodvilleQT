@@ -21,6 +21,7 @@ public:
 	void login(QString log, QString pass);
 	void doGood();
 	void doBad();
+        void pranaRestore();
 	void say(QString);
 	void updateStats();
 	void updateHero();
@@ -28,9 +29,11 @@ public:
 	bool logedin;
 	int level, expa, goods, health, healthAll, quest, questPercent, deaths, prane;
 	QString name, age, caracter, hail, godName,
-        questName, kills, money, falls, lastEvent, cityDistance, bricks, lastNote;
+        questName, kills, money, falls, lastEvent, cityDistance, bricks, lastNote, previousNote;
 	QStringList items, equipment;
 	QList<SDiaryNote> diary, tmpdiary;
+
+        bool diaryUp;
 
 signals:
 	void done(QString);
@@ -50,7 +53,7 @@ private:
 	
 	QNetworkAccessManager *net;
 	QString url;
-	QNetworkRequest loginReq, statsReq, heroReq, encourageReq, punishReq, sayReq;
+        QNetworkRequest loginReq, statsReq, heroReq, encourageReq, punishReq, sayReq, pranaRestoreReq, toArena, updateArena;
 
         Phonon::MediaObject *media;
         Phonon::AudioOutput *audioOutput;

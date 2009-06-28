@@ -21,6 +21,10 @@ private:
 	QString oldrecs;
 	int offset;
 	bool first;
+
+private slots:
+    void on_downButton_released();
+    void on_upButton_released();
 };
 //=====================================================================================
 #endif
